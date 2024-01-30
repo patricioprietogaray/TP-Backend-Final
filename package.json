@@ -1,0 +1,40 @@
+{
+  "name": "tp-backend-final",
+  "version": "1.0.0",
+  "description": "Trabajo práctico Final de Backend para la academia Numen año 2023",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon ./server/server.js",
+    "start": "node ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patricioprietogaray/TP-Backend-Final.git"
+  },
+  "keywords": [
+    "final",
+    "backend",
+    "numen",
+    "patricio",
+    "prieto",
+    "garay",
+    "partido",
+    "de",
+    "la",
+    "costa"
+  ],
+  "author": "Patricio Prieto Garay",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/patricioprietogaray/TP-Backend-Final/issues"
+  },
+  "homepage": "https://github.com/patricioprietogaray/TP-Backend-Final#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "mongoose": "^8.1.1"
+  }
+}
