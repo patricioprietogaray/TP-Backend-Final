@@ -4,16 +4,17 @@ const mongoose = require("mongoose");
 // const { type } = require("os");  // surge con type en los atributos   ????
 const Schema = mongoose.Schema; // sin parentesis
 
-const book_section_schema_const = new Schema(
+const book_topic_schema_const = new Schema(
     {
         //atributo debe coincidir con MongoDB
-        id_section: { type: String },
-        title_section: { type: String }
+        id_topic: { type: String },
+        id_chapter: {type: String},
+        title_topic: { type: String }
     }, { timeStamp: true }
     
 );
 
 //book_section es la coleccion de datos de mongodb, ojo que si pones "verdurita" se crea una
 //coleccion llamada verdurita en mongodb
-const book_section = mongoose.model("book_sections", book_section_schema_const);
-module.exports = book_section;
+const bookTopics = mongoose.model("book_topics", book_topic_schema_const);
+module.exports = bookTopics;

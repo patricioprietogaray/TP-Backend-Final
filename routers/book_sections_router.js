@@ -1,8 +1,8 @@
 const express = require("express");
-const routes = express.Router();
+const routesSection = express.Router();
 const bookSectionController = require("../controller/book_section_controller");
 
 // ************* importo las rutas
-routes.get("/sections", bookSectionController.getAllBookSection);
+routesSection.get("/", bookSectionController.getAllBookSection);
 
-module.exports = routes;
+module.exports = routesSection;

@@ -1,5 +1,4 @@
-const book_section = require("../models/book_sections_Schema");
-const bookSectionSchema = require("../models/book_sections_Schema");
+const bookSectionSchema = require("../models/book_section_Schema");
 
 const getAllBookSection = async (req, res) => {
     try {

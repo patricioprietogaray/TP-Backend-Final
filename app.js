@@ -6,8 +6,12 @@ app.use(express.json());
 
 // *********** Routes
 const bookSectionsRouter = require("./routers/book_sections_router");
+const bookChapterRouter = require("./routers/book_chapter_router");
+const bookTopicRouter = require("./routers/book_topic_router");
 // acceso desde http /book
-app.use("/book", bookSectionsRouter);
+app.use("/book/section", bookSectionsRouter);
+app.use("/book/chapters", bookChapterRouter);
+app.use("/book/topics", bookTopicRouter);
 
 // *********** Middleware
 
