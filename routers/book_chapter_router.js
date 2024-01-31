@@ -5,7 +5,9 @@ const bookChapterController = require("../controller/book_chapter_controller");
 // ************* importo las rutas
 routesChapter.get("/", bookChapterController.getAllBookChapter);
 routesChapter.get("/:id", bookChapterController.getBookChapterByID); /// buscar por id
-//routesSection.post("/") // crear una nueva seccion
-//routesSection.put("/")  // actualizar una nueva seccion
-//routesSection.delete("/")  //borrar una seccion (ver que este vacia)
+routesChapter.post("/", bookChapterController.createBookChapter); //crear capitulo
+routesChapter.put("/:id", bookChapterController.updateBookChapter);  // actualizar un capitulo
+routesChapter.delete("/:id", bookChapterController.deleteBookChapter);  //borrar una capitulo (ver que este vacia)
+
+
 module.exports = routesChapter;
