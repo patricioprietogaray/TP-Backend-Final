@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "1921c7d2-ca93-403b-9c46-ea6a7547cf3a",
 		"name": "tpFinalServer",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32491075",
 		"_collection_link": "https://lunar-shadow-260831.postman.co/workspace/New-Team-Workspace~03bbfdbf-09e1-41ef-991b-113523079616/collection/32491075-1921c7d2-ca93-403b-9c46-ea6a7547cf3a?action=share&source=collection_link&creator=32491075"
 	},
@@ -98,12 +98,102 @@
 			]
 		},
 		{
-			"name": "get topic",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
+			"name": "crud temas",
+			"item": [
+				{
+					"name": "get topic",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "id topic",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update topic",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "crear topic",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete topic",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "crud usuarios",
+			"item": [
+				{
+					"name": "user delete",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "crear usuario",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "user update",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "id usuario",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "get users",
