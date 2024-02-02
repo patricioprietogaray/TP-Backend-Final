@@ -40,12 +40,25 @@ const getBookSectionByID = async (req, res) => {
 };
 
 const createBookSection = async (req, res) => {
+
     try {
-        const createSection = await bookSectionSchema.create(req.body);
-        res.status(200).json({ createSection, msg: "Tarea agregada exitosamente!" });
+        const idNuevo = req.body.id_section;
+        const encontrarIdNuevo = await bookSectionSchema.findOne(
+            { id_section: idNuevo }
+        );
+        
+        if (encontrarIdNuevo === null) {
+            //si no existe el id_section crear uno nuevo
+            const createSection = await bookSectionSchema.create(req.body);
+            res.status(200).json({ createSection, msg: "Sección agregada exitosamente!" });
+        } else {
+            res.status(200).json({ msg: "La sección existe!" });
+        }        
     } catch (error) {
-        res.status(500).json({ msg: `Error al crear la nueva seccion - ${error.message}` });
+         res.status(500).json({ msg: `Server Error! Problemas al crear la nueva seccion - ${error.message}` });
     }
+    
+
 };
 
 const updateBookSection = async (req, res) => {
