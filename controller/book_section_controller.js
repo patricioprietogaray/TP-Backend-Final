@@ -1,5 +1,6 @@
-const { isString } = require("util");
+//const { isString } = require("util");
 const bookSectionSchema = require("../models/book_section_Schema");
+
 
 const getAllBookSection = async (req, res) => {
     try {
@@ -18,17 +19,23 @@ const getBookSectionByID = async (req, res) => {
         //const seccionEncontrada = await bookSectionSchema.findById(buscarID); - si es numero
         
         //si es caracter el id_sectoon (que es caracter)
-        const seccionEncontrada = await bookSectionSchema.find(
-            { id_section: { $regex: new RegExp(buscarID, 'i') } }
+        const seccionEncontrada = await bookSectionSchema.findOne(
+            //{ id_section: { $regex: new RegExp(buscarID, 'i') } }
+            { id_section: buscarID }
         );
-        if (seccionEncontrada) {
-            res.status(200).json({ msg: `Se encontró ${seccionEncontrada}` });
+        
+        const { title_section, id_section } = seccionEncontrada;
+        
+        //if (seccionEncontrada && seccionEncontrada.length > 0) {
+        if (!seccionEncontrada.$isEmpty()) {
+            //const { title_section, id_section } = seccionEncontrada;
+            console.log("seccionEncontrada tiene uno o mas elementos");
+            res.status(200).json({ msg: `Se encontró el id: ${id_section} - cuyo titulo es ${title_section}` });
         } else {
-            res.send(`No se encontró la sección ${json(buscarID)}`);
+            res.status(404).json({ msg: `No se encontró la sección ${buscarID}` });
         }
     } catch (e) {
-        res.send("Error al buscar la seccion: " + e.message);
-        res.status(500).send("Error interno del servidor!");
+        res.status(500).json({  msg: "Error al buscar la seccion: " + e.message });
     }
 };
 
@@ -45,10 +52,10 @@ const updateBookSection = async (req, res) => {
     try {
         const buscarID = req.params.id;
         //si es caracter el id_sectoon (que es caracter)
-        const seccionEncontrada = await bookSectionSchema.find(
-            { id_section: { $regex: new RegExp(buscarID, 'i') } }
+        const seccionEncontrada = await bookSectionSchema.findOne(
+            { id_section: buscarID }
         );
-        if (seccionEncontrada) {
+        if (!seccionEncontrada.$isEmpty()) {
             const actualizarSeccion = await bookSectionSchema.findByIdAndUpdate(
             // buscar id             cuerpo a reemplazar
             seccionEncontrada, req.body
@@ -60,7 +67,7 @@ const updateBookSection = async (req, res) => {
         }
         
     } catch (error) {
-        res.status(500).json({ msg: `Error al actualizar una sección - ${error.message}` });
+        res.status(500).json({ msg: "Error al actualizar una sección: "+ error.message });
     }
 }
 
@@ -68,19 +75,19 @@ const deleteBookSection = async (req, res) => {
     try {
         const buscarID = req.params.id;
         //si es caracter el id_sectoon (que es caracter)
-        const seccionEncontrada = await bookSectionSchema.find(
-            { id_section: { $regex: new RegExp(buscarID, 'i') } }
+        const seccionEncontrada = await bookSectionSchema.findOne(
+            { id_section: buscarID }
         );
-        if (seccionEncontrada) {
+        if (!seccionEncontrada.$isEmpty()) {
             const seccionBorrada = await bookSectionSchema.findByIdAndDelete(seccionEncontrada);
             res.status(200).json({ book_sections: seccionBorrada, msg: "Sección borrada exitosamente!" });
         } else {
-            res.send(`No se encontró la sección ${json(buscarID)}`);
+            res.status(500).json({ msg: `No se encontró la sección ${buscarID}` });
         }
         
         //const borrarSeccion = await bookSectionSchema
     } catch (error) {
-
+        res.status(500).json({ msg: "Error al borrar la sección "+ error.message });
     }
 }
 

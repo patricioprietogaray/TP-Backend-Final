@@ -7,7 +7,7 @@ const Schema = mongoose.Schema; // sin parentesis
 const book_section_schema_const = new Schema(
     {
         //atributo debe coincidir con MongoDB
-        id_section: { type: String },
+        id_section: { type: Number },
         title_section: { type: String }
     }, { timeStamp: true }
     

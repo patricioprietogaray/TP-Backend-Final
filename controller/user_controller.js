@@ -100,7 +100,7 @@ const loginUser = async (req, res) => {
                 console.log("bienvenido: " + usuarioParams);
                 res.status(200).json({ users: logueaUsuario, msg: "Usuario logueado correctamente!" });
             }
-         } else {
+        } else {
             console.log("Ha ingresado una clave inválida");
             res.status(401).json({ msg: "Contraseña inválida, para ingresar pruebe de nuevo!" });
         }
