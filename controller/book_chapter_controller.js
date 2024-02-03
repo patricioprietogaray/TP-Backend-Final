@@ -3,7 +3,7 @@ const bookChapterSchema = require("../models/book_chapter_Schema");
 const getAllBookChapter = async (req, res) => {
     try {
         const allBookChapter = await bookChapterSchema.find();
-        console.log(allBookChapter.length);
+        //console.log(allBookChapter.length);
         //book_chapter es la coleccion de mongodb
         res.status(200).json({ book_chapters: allBookChapter, msg: "Ok" });
     } catch (error) {
@@ -17,24 +17,45 @@ const getBookChapterByID = async (req, res) => {
         //const seccionEncontrada = await bookSectionSchema.findById(buscarID); - si es numero
         
         //si es caracter el id_sectoon (que es caracter)
-        const capituloEncontrado = await bookChapterSchema.find(
-            { id_chapter: { $regex: new RegExp(buscarID, 'i') } }
+        const capituloEncontrado = await bookChapterSchema.findOne(
+            { id_chapter: buscarID }
         );
-        if (capituloEncontrado) {
-            res.status(200).json({ msg: `Se encontró ${capituloEncontrado}` });
+        const { id_chapter, id_section, title_chapter } = capituloEncontrado;
+        if (!capituloEncontrado.$isEmpty()) {
+            //capitulo encontrado
+            res.status(200).json({ msg: `Se encontró el id del capitulo ${id_chapter}, id de sección ${id_section}, con el titulo de ${title_chapter}.` });
         } else {
-            res.send(`No se encontró el capítulo ${json(buscarID)}`);
+            res.status(404).json({ msg: `No se encontró el capítulo ${buscarID}.` });
         }
     } catch (e) {
-        res.send("Error al buscar el capítulo: " + e.message);
-        res.status(500).send("Error interno del servidor!");
+        res.status(500).json({ msg: "Error interno del servidor!" });
     }
 }
 
 const createBookChapter = async (req, res) => {
     try {
-        const createChapter = await bookChapterSchema.create(req.body);
-        res.status(200).json({ createChapter, msg: "Tarea agregada exitosamente!" });
+        const idCapituloNuevo = req.body.id_chapter;
+        const idSeccionNueva = req.body.id_section;
+        const tituloCapitulo = req.body.title_chapter;
+        let crear = true;
+
+        const encontrarTodasLasSecciones = await bookChapterSchema.find(
+            {id_section: idSeccionNueva}
+        );
+        
+        for (const elem of encontrarTodasLasSecciones) {
+            if (elem.id_chapter === idCapituloNuevo) {
+                crear = false;
+                break;
+            }
+        }
+
+        if (crear === true) {
+            const createChapter = await bookChapterSchema.create(req.body);
+            res.status(200).json({ createChapter, msg: "Tarea agregada exitosamente!" });
+        }
+
+
     } catch (error) {
         res.status(500).json({ msg: `Error al crear la nueva seccion - ${error.message}` });
     }

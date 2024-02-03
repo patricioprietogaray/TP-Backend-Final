@@ -7,7 +7,7 @@ const Schema = mongoose.Schema; // sin parentesis
 const user_schema_const = new Schema(
     {
         //atributo debe coincidir con MongoDB
-        id_user: { type: String },
+        id_user: { type: Number },
         username: { type: String },
         password: { type: String }
     }, { timeStamp: true }
