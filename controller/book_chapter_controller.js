@@ -31,7 +31,7 @@ const getBookChapterByID = async (req, res) => {
             
             console.log("una vuelta.. " + capi.id_chapter);
             if (idCapitulo === capi.id_chapter) {
-                console.log("Encontrado " + idCapitulo);
+                //console.log("Encontrado " + idCapitulo);
                 mostrar = true;
                 datos = capi;
                 break;
@@ -39,7 +39,7 @@ const getBookChapterByID = async (req, res) => {
         }
 
         if (mostrar === true) {
-            console.log("mostrar es verdadero")
+            //console.log("mostrar es verdadero")
             res.status(200).json({ msg: `Se encontró el id del capitulo ${idCapitulo}, id de sección ${idSeccion}. Los datos son los siguientes: ${datos}` });
         }
 
@@ -106,6 +106,50 @@ const createBookChapter = async (req, res) => {
 };
 
 const updateBookChapter = async (req, res) => {
+    try {
+        const idSeccion = req.params.idSeccion;
+        const idCapitulo = req.params.idCapitulo;
+        const titulo = req.params.title_chapter;
+        let datos;
+        let editar = false;
+
+        //uso find porque necesito que devuelva todos las secciones de la coleccion
+        const encontrarTodasLasSecciones = await bookChapterSchema.find(
+            { id_section: idSeccion }
+        );
+
+        //no uso map porque es sincrono
+        // uso for porque es asincrono
+        for (const capi of encontrarTodasLasSecciones) {
+            
+            console.log("una vuelta.. " + capi.id_chapter);
+            if (idCapitulo === capi.id_chapter) {
+                //console.log("Encontrado " + idCapitulo);
+                editar = true;
+                datos = capi;
+                break;
+            }
+        }
+
+        if (editar === true) {
+            console.log("mostrar es verdadero")
+            const filter = { id_section: idSeccion, id_chapter: idCapitulo };
+            const update = req.body;
+                //{ $set: { title_chapter: titulo } };
+
+            //actualizar el atributo titulo
+            //res.status(200).json({ msg: `Se encontró el id del capitulo ${idCapitulo}, id de sección ${idSeccion}. Los datos son los siguientes: ${datos}` });
+            const doc = await bookChapterSchema.findOneAndUpdate(filter, update, {
+                new: true
+            });
+            //console.log("Luego de la actualizacion: "+doc.id_section+", "+doc.id_chapter+", "+doc.title_chapter)
+            res.status(200).json({ msg: `Se encontró el id del capitulo ${idCapitulo}, id de sección ${idSeccion}. Los datos son los siguientes: ${datos}` });
+        }
+
+    } catch (error) {
+        res.status(500).json({ msg: `Error al actualizar una sección - ${error.message}` });
+    }
+    
     // try {
     //     const buscarID = req.params.id;
     //     //si es caracter el id_sectoon (que es caracter)

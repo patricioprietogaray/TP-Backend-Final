@@ -7,7 +7,7 @@ const middlewareDosDatosTextoNumber = require("../middlewares/dosDatosConvertirT
 routesChapter.get("/",  bookChapterController.getAllBookChapter);
 routesChapter.get("/:idSeccion/:idCapitulo", middlewareDosDatosTextoNumber, bookChapterController.getBookChapterByID); /// buscar por id
 routesChapter.post("/", bookChapterController.createBookChapter); //crear capitulo
-//routesChapter.put("/:id", middlewareTextoNumber, bookChapterController.updateBookChapter);  // actualizar un capitulo
+routesChapter.put("/:idSeccion/:idCapitulo", middlewareDosDatosTextoNumber, bookChapterController.updateBookChapter);  // actualizar un capitulo
 //routesChapter.delete("/:id", middlewareTextoNumber, bookChapterController.deleteBookChapter);  //borrar una capitulo (ver que este vacia)
 
 
