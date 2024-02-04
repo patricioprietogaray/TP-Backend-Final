@@ -92,6 +92,7 @@ const deleteBookSection = async (req, res) => {
             { id_section: buscarID }
         );
         if (!seccionEncontrada.$isEmpty()) {
+            //alert("Atención: Borrará los datos!");
             const seccionBorrada = await bookSectionSchema.findByIdAndDelete(seccionEncontrada);
             res.status(200).json({ book_sections: seccionBorrada, msg: "Sección borrada exitosamente!" });
         } else {

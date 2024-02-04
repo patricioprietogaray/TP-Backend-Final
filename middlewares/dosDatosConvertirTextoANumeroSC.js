@@ -1,6 +1,6 @@
 // la funcion se debe llamar igual que el archivo
 
-const dosDatosConvertirTextoANumero = (req, res, next) => {
+const dosDatosConvertirTextoANumeroSC = (req, res, next) => {
     
     // texto
     const idSeccion = req.params.idSeccion;
@@ -18,4 +18,4 @@ const dosDatosConvertirTextoANumero = (req, res, next) => {
     next();
 }
 
-module.exports = dosDatosConvertirTextoANumero;
+module.exports = dosDatosConvertirTextoANumeroSC;
