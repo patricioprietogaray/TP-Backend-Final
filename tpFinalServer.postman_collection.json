@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "1921c7d2-ca93-403b-9c46-ea6a7547cf3a",
 		"name": "tpFinalServer",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "32491075",
 		"_collection_link": "https://lunar-shadow-260831.postman.co/workspace/New-Team-Workspace~03bbfdbf-09e1-41ef-991b-113523079616/collection/32491075-1921c7d2-ca93-403b-9c46-ea6a7547cf3a?action=share&source=collection_link&creator=32491075"
 	},
@@ -64,7 +64,15 @@
 					"response": []
 				},
 				{
-					"name": "id chapter",
+					"name": "crear capitulo",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "mostrar id seccion - id capitulo",
 					"request": {
 						"method": "GET",
 						"header": []
@@ -81,14 +89,6 @@
 				},
 				{
 					"name": "borra capitulo",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "crear capitulo",
 					"request": {
 						"method": "GET",
 						"header": []
@@ -205,6 +205,22 @@
 		},
 		{
 			"name": "encriptar",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "provincias",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
 			"request": {
 				"method": "GET",
 				"header": []
